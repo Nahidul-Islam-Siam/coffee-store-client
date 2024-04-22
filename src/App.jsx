@@ -5,12 +5,11 @@ function App() {
 
 
   return (
-    <>
+    <div>
    
-      <h1 className='text-6xl text-purple-600'>Vite + React</h1>
-    
-      
-    </>
+      <h1 >Add Coffee</h1>
+   
+    </div>
   )
 }
 
