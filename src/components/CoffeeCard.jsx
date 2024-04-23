@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-const CoffeeCard = ({coffee}) => {
+const CoffeeCard = ({coffee,  coffees, setCoffees}) => {
     const {_id, name,quantity,supplier,taste,category,details,photo} = coffee
 
 
@@ -17,11 +18,24 @@ const CoffeeCard = ({coffee}) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire({
+         
+            fetch(`http://localhost:5000/coffee/${_id}`,{
+                method: 'DELETE'
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+                if(data.deletedCount > 0){
+                         Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your Coffee has been deleted.",
                 icon: "success"
               });
+
+              const remaining = coffees.filter(cof => cof._id !==_id)
+              setCoffees(remaining)
+                }
+            })
             }
           });
     }
@@ -37,8 +51,11 @@ const CoffeeCard = ({coffee}) => {
     </div>
     <div className="join join-vertical space-y-4">
   <button className="btn join-item hover:btn-primary">View</button>
-  <button className="btn join-item hover:btn-primary">Edit</button>
+ <Link  to={`updateCoffee/${_id}`}>
+ <button className="btn join-item hover:btn-primary">Edit</button>
+ </Link>
   <button
+
   onClick={()=> handlDelete(_id)}
    className="btn join-item hover:btn-primary bg-orange-500">x</button>
 </div>
