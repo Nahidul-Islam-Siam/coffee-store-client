@@ -16,7 +16,7 @@ console.log(newCoffee);
 
 
 // send data to the server
-fetch('http://localhost:5000/coffee',{
+fetch('https://coffee-store-server-7170xcm69-nahidul-islam-siams-projects.vercel.app/coffee',{
     method: 'POST',
     headers: {
         'content-type': 'application/json'

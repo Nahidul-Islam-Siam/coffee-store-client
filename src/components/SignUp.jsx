@@ -21,7 +21,7 @@ const {createUser} = useContext(AuthContex)
             creationTime
             ;
             const user = {email, createdAt: createdAt}
-            fetch(`http://localhost:5000/user`,{
+            fetch(`https://coffee-store-server-7170xcm69-nahidul-islam-siams-projects.vercel.app/user`,{
                 method: 'POST',
                 headers:{
                     'content-type': 'application/json'

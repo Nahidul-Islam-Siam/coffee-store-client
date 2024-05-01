@@ -5,19 +5,21 @@ import { useLoaderData } from "react-router-dom";
 const Users = () => {
     const loadedUsers = useLoaderData()
     const [users, setUsers] = useState(loadedUsers)
-
+console.log(users);
     const handleDelete = id =>{
 // make sure user is confirmed to delete
 
-fetch(`http://localhost:5000/user/${id}`,{
+fetch(`https://coffee-store-server-7170xcm69-nahidul-islam-siams-projects.vercel.app/user/${id}`,{
   method: 'DELETE'
 })
 .then(res => res.json())
 .then(data =>{
+
   if(data.deletedCount > 0){
     console.log('deleted successfully');
     // remove the user from the UI;
-    const remainingUsers = users.filter(user => user._id !==id)
+    const remainingUsers = users.filter(user => user._id !== id)
+    // console.log(id, remainingUsers);
     setUsers(remainingUsers)
   }
 })
